@@ -1,0 +1,16 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}/">
+<body class="indexBody">
+<div style="text-align: center;">
+<h2 style="color: white;">Here are all my albums:</h2>
+{% if all_albums %}
+
+        {% for album in all_albums %}
+        <h3><a style="text-decoration: none;color:white" href="{% url 'music:detail' album.id %}">{{album.album_title}}</a></h3>
+        {% endfor %}
+
+{% else %}
+    <h3>No Albums in Database</h3>
+{% endif %}
+</div>
+</body>
