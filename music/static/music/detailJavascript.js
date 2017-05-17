@@ -13,4 +13,5 @@ function giveUrl(song_url) {
    url.src="../../"+song_url
     audio.load()
     audio.play()
+    
 }
