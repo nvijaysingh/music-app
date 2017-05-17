@@ -22,3 +22,8 @@ def detail(request,album_id):
   album= get_object_or_404(Album, pk=album_id)
   return render(request, "music/detail.html",{'album':album})
 
+def mainPage(request):
+    all_albums = Album.objects.all()
+    context = {'all_albums': all_albums}
+    return render(request, 'music/mainPage.html', context)
+

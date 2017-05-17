@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}/">
 <script type="text/javascript" src="{% static 'music/detailJavascript.js' %}"></script>
 <div style="text-align: center;background-color: skyblue;"><br>
-<img style="height: 240px;width: 320px;" src="{{ album.album_logo }}">
+<img style="height: 240px;width: 320px;" src="../../{{ album.album_logo.url }}">
 <h3>Album Title: {{ album.album_title }}</h3>
 <h3>Artist: {{ album.artist }}</h3>
 <h3>Genre: {{ album.genre }}</h3>
@@ -10,8 +10,9 @@
 <div><h4>Songs List</h4>
 {% for song in album.song_set.all %}
     <h5 id="{{ song.id }}" >{{ forloop.counter }}. {{ song.song_title }}-{{ song.file_type }}
-        <button onclick="audioPlay({{ song.id }})" onclick="giveUrl({{ song.song_file.url }})" >Play Song</button>
+        <button onclick="audioPlay({{ song.id }})" ondblclick='giveUrl("{{ song.song_file.url }}")' >Double Click to Play Song</button>
        <!-- <img id="getSource" src="{{ song.song_file.url }}" style="height: 0px;width: 0px;"> -->
+
     </h5>
 {% endfor %}
 </div>
@@ -20,5 +21,5 @@
     <div id="songDetail">
         <h3>Please click on a song to play</h3>
     </div>
-    <audio controls><source id="url" src="" type="mp3/mpeg"> </audio>
+    <audio id="audio" controls><source id="url" src="../../media/Hey_Mama.mp3" type="audio/mpeg"> </audio>
 </div>
