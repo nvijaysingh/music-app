@@ -4,3 +4,4 @@
  a:hover{color: red;font-style: italic;font-size: large;}
  .songContainer{top: 20px; height: 100px;width: 100%;background-color: coral;}
  .songContainer audio {width: 100%;}
+ .block div {display: inline-block;float: left;}
