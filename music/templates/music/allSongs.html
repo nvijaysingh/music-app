@@ -1,0 +1,19 @@
+{% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}/">
+    <script type="text/javascript" src="{% static 'music/detailJavascript.js' %}"></script>
+
+      <h2>All Songs List</h2>
+      <div>
+          {% for song in album.song_set.all %}
+              <h3 id="{{ song.id }}" >{{ forloop.counter }}. {{ song.song_title }}-{{ song.file_type }}
+              <button class="btn btn-primary" onclick="audioPlay({{ song.id }})" ondblclick='giveUrl("{{ song.song_file.url }}")' >Double Click to Play Song</button>
+              </h3>
+          {% endfor %}
+      </div>
+<div class="songContainer">
+    <div id="songDetail">
+        <h3>Please click on a song to play</h3>
+    </div>
+    <audio id="audio" controls><source id="url" src="../../media/Hey_Mama.mp3" type="audio/mpeg"> </audio>
+</div>

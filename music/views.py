@@ -26,4 +26,8 @@ def mainPage(request):
     all_albums = Album.objects.all()
     context = {'all_albums': all_albums}
     return render(request, 'music/mainPage.html', context)
+def allSongs(request):
+    album = Album.objects.get(id=1)
+    context = {'album': album}
+    return render(request, 'music/allSongs.html', context)
 
