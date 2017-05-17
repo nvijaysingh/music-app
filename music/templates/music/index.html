@@ -2,16 +2,26 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}/">
 <body class="indexBody">
-<div style="text-align: center;">
-<h2 style="color: white;">Here are all my albums:</h2>
+
+<div class="row">
+    <div class="col-sm-8"><h3 style="color: white;">Here are all my albums:</h3></div>
+    <div class="col-sm-4"><a style="text-decoration: none;" href="http://127.0.0.1:8000/admin/music/album/add/"><button class="btn btn-info">Add Album</button></a></div>
+</div>
+
 {% if all_albums %}
-
+           <div class="row">
         {% for album in all_albums %}
-        <h3><a style="text-decoration: none;color:white" href="{% url 'music:detail' album.id %}">{{album.album_title}}</a></h3>
-        {% endfor %}
 
+              <div class="col-sm-4">
+                  <img style="height: 240px;width: 320px;" src="../../{{ album.album_logo.url }}"/><br>
+                  <h3>{{ album.album_title }}</h3>
+                  <a style="text-decoration: none;color:white" href="{% url 'music:detail' album.id %}"><button class="btn btn-success">Open Album</button></a>
+              </div>
+
+
+        {% endfor %}
+            </div>
 {% else %}
     <h3>No Albums in Database</h3>
 {% endif %}
-</div>
 </body>
