@@ -10,6 +10,7 @@ urlpatterns = [
    url(r'^admin/', admin.site.urls),
    url(r'^$', views.mainPage, name='mainPage' ),
    url(r'^music/', include('music.urls')),
+   url(r'^video/', include('video.urls')),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,19 @@
+{
+  "name": "myApp",
+  "homepage": "https://github.com/nvijaysingh/music-app",
+  "authors": [
+    "nvijaysingh <nitharwalvijendra@gmail.com>"
+  ],
+  "description": "",
+  "main": "detailjavascript.js",
+  "license": "ISC",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "music/static/music/bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,9 +1,11 @@
 from django.http import Http404
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render, get_object_or_404
 from .models import Album
-
+from django.views.decorators.csrf import csrf_exempt
+import json
 def index(request):
    # /music/
   all_albums = Album.objects.all()
@@ -23,11 +25,20 @@ def detail(request,album_id):
   return render(request, "music/detail.html",{'album':album})
 
 def mainPage(request):
-    all_albums = Album.objects.all()
-    context = {'all_albums': all_albums}
-    return render(request, 'music/mainPage.html', context)
+
+    return HttpResponseRedirect('/music/')
 def allSongs(request):
-    album = Album.objects.get(id=1)
+    album = Album.objects.all()
     context = {'album': album}
     return render(request, 'music/allSongs.html', context)
 
+
+@csrf_exempt
+def addAlbum(request):
+        album = json.loads(request.body)
+        result = dict()
+        if Album.objects.filter(album_title = album['album_title']).count() <= 0:
+           savealbum = Album(artist = album['artist'], album_title= album['album_title'], genre= album['genre'])
+           savealbum.save()
+        result['status'] = 'success'
+        return HttpResponse(json.dumps(result), content_type="application/json")

@@ -1,25 +1,27 @@
 {% load staticfiles %}
+<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}/">
 <script type="text/javascript" src="{% static 'music/detailJavascript.js' %}"></script>
 
-<div class="block" style="height: 80%;width: 100%;background-color: skyblue;">
-<div style="text-align: center;height: 100%;width: 40%;"><br>
+<div class="row" style="overflow-y: scroll;height: 85%;width: 100%;background-color: white;">
+<div class="col-sm-4" style="text-align: center;height: 100%;width: 40%;font-family: Serif;"><br>
 <img style="height: 240px;width: 320px;" src="../../{{ album.album_logo.url }}">
 <h3>Album Title: {{ album.album_title }}</h3>
 <h3>Artist: {{ album.artist }}</h3>
 <h3>Genre: {{ album.genre }}</h3>
 </div>
-<div style="height: 100%;width: 60%;"><h1>Songs List</h1><br>
+<div class="col-sm-8" style="height: 100%;width: 60%;font-family: cursive;"><h1>Songs List</h1><br>
 {% for song in album.song_set.all %}
-    <h3 id="{{ song.id }}" >{{ forloop.counter }}. {{ song.song_title }}-{{ song.file_type }}
-        <button class="btn btn-primary" onclick="audioPlay({{ song.id }})" ondblclick='giveUrl("{{ song.song_file.url }}")' >Double Click to Play Song</button>
+    <h3 id="{{ song.id }}" style="font-family: 'Rubik', cursive;" >{{ forloop.counter }}. {{ song.song_title }}-{{ song.file_type }}
+        <span onclick="audioPlay({{ song.id }})"><i class= "glyphicon glyphicon-play" style="cursor: pointer;" onclick='giveUrl("{{ song.song_file.url }}")' ></i></span>
        <!-- <img id="getSource" src="{{ song.song_file.url }}" style="height: 0px;width: 0px;"> -->
     </h3>
 {% endfor %}
 </div>
 </div>
-<div class="songContainer">
+<div class="songContainer" style="height: 15%;width: 100%;background-color: coral;">
     <div id="songDetail">
         <h3>Please click on a song to play</h3>
     </div>

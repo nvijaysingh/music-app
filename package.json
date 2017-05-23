@@ -1,0 +1,20 @@
+{
+  "name": "music",
+  "version": "1.0.0",
+  "main": "indexjavascript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babelify": "^7.3.0"
+    },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/nvijaysingh/music-app.git"
+}
+}
+
