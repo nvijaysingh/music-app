@@ -77,12 +77,12 @@ WSGI_APPLICATION = 'myApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'nvijaysingh',
-        'USER': 'nvijaysingh',
-        'PASSWORD': 'nvijaysingh786',
-        'HOST': 'nvijaysingh.cttpvqsadktu.us-east-2.rds.amazonaws.com',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'musicappdatabase',
+        'USER': 'musicapp',
+        'PASSWORD': 'nvijaysingh',
+        'HOST': 'nvijaysingh2.cttpvqsadktu.us-east-2.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
