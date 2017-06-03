@@ -1,6 +1,0 @@
-.indexBody {
-    background: white url("../images/background.jpg");
-}
- a:hover{color: red;font-style: italic;font-size: large;}
- .songContainer{top: 20px; height: 100px;width: 100%;background-color: coral;}
- .songContainer audio {width: 100%;}
