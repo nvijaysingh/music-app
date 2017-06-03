@@ -6,4 +6,8 @@ urlpatterns = [
     url(r'^(?P<album_id>[0-9]+)/$', views.detail, name='detail'),
     url(r'^allsongs$', views.allSongs, name='allSongs'),
     url(r'^addAlbum', views.addAlbum, name='addAlbum'),
+    url(r'^get_all_songs', views.get_all_songs, name='get_all_songs'),
+    url(r'^get_all_album', views.get_all_album, name='get_all_album'),
+    url(r'^addSong', views.addSong, name='addSong'),
+    url(r'^get_ids', views.get_ids, name='get_ids'),
 ]

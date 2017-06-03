@@ -13,7 +13,7 @@
 {# Vijendra Modal section#}
 {% verbatim %}
 <div id="whole" ng-controller = "faqCtrl">
-<div class="container" id="myModal" style="display: none;z-index: 10;background-color: lightgreen;  height: 300px;width: 40%;left: 30%;top:150px;position: fixed;">
+<div class="container" id="myModal" style="display: none;z-index: 10;background-color: white;  height: 300px;width: 40%;left: 30%;top:150px;position: fixed;">
  <span id="close" style="cursor: pointer;">&times;</span>
     <h2>Add Album Here</h2>
   <form class="form-horizontal" >
@@ -38,7 +38,7 @@
       <div class="form-group">
       <label class="control-label col-sm-2" >Album Logo:</label>
       <div class="col-sm-10">
-        <input type="file" ng-model="album.logo" class="form-control" />
+        <input type="file" data-bind-File ng-model="album.logo" class="form-control" />
 
       </div>
       </div>
@@ -54,7 +54,7 @@
 <div class="row">
     <div class="col-sm-4"><h3 style="color: black;">Here are all my albums:</h3></div>
     <div class="col-sm-4"><a style="text-decoration: none;" href="/music/allsongs"><button class="btn btn-info">All Songs</button></a></div>
-{#    <div class="col-sm-4"><button class="btn btn-info" id="albumButton">Add Album</button></div>#}
+    <div class="col-sm-4"><button class="btn btn-info" id="albumButton">Add Album</button></div>
 </div>
 
 {% if all_albums %}

@@ -5,15 +5,15 @@
 <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}/">
 <script type="text/javascript" src="{% static 'music/detailJavascript.js' %}"></script>
 
-<div class="row" style="overflow-y: scroll;height: 85%;width: 100%;background-color: white;">
+<div class="row" style="height: 85%;width: 100%;background-color: white;">
 <div class="col-sm-4" style="text-align: center;height: 100%;width: 40%;font-family: Serif;"><br>
 <img style="height: 240px;width: 320px;" src="../../{{ album.album_logo.url }}">
 <h3>Album Title: {{ album.album_title }}</h3>
 <h3>Artist: {{ album.artist }}</h3>
 <h3>Genre: {{ album.genre }}</h3>
 </div>
-<div class="col-sm-8" style="height: 100%;width: 60%;font-family: cursive;"><h1>Songs List</h1><br>
-{% for song in album.song_set.all %}
+<div class="col-sm-8" style="height: 100%;width: 60%;overflow-y: scroll;font-family: cursive;"><h1>Songs List</h1><br>
+{% for song in songs %}
     <h3 id="{{ song.id }}" style="font-family: 'Rubik', cursive;" >{{ forloop.counter }}. {{ song.song_title }}-{{ song.file_type }}
         <span onclick="audioPlay({{ song.id }})"><i class= "glyphicon glyphicon-play" style="cursor: pointer;" onclick='giveUrl("{{ song.song_file.url }}")' ></i></span>
        <!-- <img id="getSource" src="{{ song.song_file.url }}" style="height: 0px;width: 0px;"> -->

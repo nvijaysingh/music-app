@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render, get_object_or_404
-from .models import Album
+from .models import Album,Song
 from django.views.decorators.csrf import csrf_exempt
 import json
+from .forms import AlbumForm, SongForm
 def index(request):
    # /music/
   all_albums = Album.objects.all()
@@ -22,23 +23,83 @@ def detail(request,album_id):
   #except Album.DoesNotExist:
    #   raise Http404('Album Does Not Exist')
   album= get_object_or_404(Album, pk=album_id)
-  return render(request, "music/detail.html",{'album':album})
+  songs_list = Song.objects.filter(album=album)
+  print songs_list
+  return render(request, "music/detail.html",{'album':album,'songs':songs_list})
 
 def mainPage(request):
 
     return HttpResponseRedirect('/music/')
-def allSongs(request):
-    album = Album.objects.all()
-    context = {'album': album}
-    return render(request, 'music/allSongs.html', context)
 
+
+def allSongs(request):
+    songs_list = []
+    newlist2=[]
+    album = Album.objects.all()
+    # print album
+    for song in album:
+          new_song=Song.objects.filter(album=song)
+          for song2 in new_song:
+               songs_list.append({'song_title':song2.song_title,'file_type':song2.file_type,'id':song2.pk,'url':song2.song_file.url})
+          newlist2.append({'album_title':song.album_title,'album_logo_url':song.album_logo.url,'album_songs':songs_list})
+          songs_list = []
+    # print newlist2
+    context = {'album':newlist2}
+    return render(request, 'music/allSongs.html', context)
 
 @csrf_exempt
 def addAlbum(request):
-        album = json.loads(request.body)
+        album = json.loads(request.body or None, request.FILES or None)
         result = dict()
+        print album
         if Album.objects.filter(album_title = album['album_title']).count() <= 0:
-           savealbum = Album(artist = album['artist'], album_title= album['album_title'], genre= album['genre'])
-           savealbum.save()
+            savealbum = Album(artist = album['artist'], album_title= album['album_title'], genre= album['genre'],album_logo=album['logo'])
+            savealbum.save()
         result['status'] = 'success'
         return HttpResponse(json.dumps(result), content_type="application/json")
+
+@csrf_exempt
+def get_all_songs(request):
+    newlist = []
+    result = dict()
+    new_song = Song.objects.get(pk=request.GET.get('id'))
+    newlist.append({'song': new_song.song_file.url,'name':new_song.song_title,'length':new_song.song_file.size, 'pk': new_song.pk})
+    # print newlist
+    result['list'] = newlist
+    return HttpResponse(json.dumps(result), content_type="application/json")
+
+@csrf_exempt
+def get_all_album(request):
+    newlist = []
+    newlist2 = []
+    result = dict()
+    new_song = Album.objects.all()
+    for new in new_song:
+      newlist.append({'album': new.album_title, 'pk': new.pk})
+    newlist2.append({'list_of_albums':newlist})
+    # print newlist2
+    result['list'] = newlist2
+    return HttpResponse(json.dumps(result), content_type="application/json")
+
+@csrf_exempt
+def addSong(request):
+        album2 = json.loads(request.body or None, request.FILES or None)
+        result = dict()
+        print album2
+        new_album=Album.objects.get(album_title = album2['album'])
+        savesong = Song(album = new_album, file_type= album2['file_type'], song_title= album2['song_title'])
+        savesong.save()
+        result['status'] = 'success'
+        return HttpResponse(json.dumps(result), content_type="application/json")
+
+@csrf_exempt
+def get_ids(request):
+    newlist = []
+    result = dict()
+    new_song2 = Song.objects.all()
+    for new in new_song2:
+      newlist.append(new.pk)
+    print newlist
+    result['list'] = newlist
+    return HttpResponse(json.dumps(result), content_type="application/json")
+

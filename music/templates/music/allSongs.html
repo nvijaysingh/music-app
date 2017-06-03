@@ -2,23 +2,93 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}/">
+    <script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+    <script src="//cdn.jsdelivr.net/alertifyjs/1.8.0/alertify.min.js"></script>
+    <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="{% static 'music/bower_components/semantic/dist/semantic.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'music/detailJavascript.js' %}"></script>
+<div class="whole" ng-app="myApp">
+<div class="whole"  ng-controller="faqCtrl">
+
+{# Vijendra Modal section#}
+{% verbatim %}
+<div class="container" id="myModal" style="display: none;background-color: lightskyblue; z-index: 10;opacity: 1;  height: 300px;width: 40%;left: 30%;top:100px;position: fixed;">
+ <span id="close" style="cursor: pointer;">&times;</span>
+    <h2>Add Song Here</h2>
+    {% endverbatim %}
+  <form class="form-horizontal" >
+ {% verbatim %}
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Album:</label>
+      <div class="col-sm-10" >
+          <select name="album" ng-model="song.album" class="form-control" >
+              <option ng-repeat="albm in albumlist1.list_of_albums">{{ albm.album }}</option>
+          </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2"  >File Type:</label>
+      <div class="col-sm-10">
+         <select name="file_type" ng-model="song.file_type" class="form-control" >
+              <option>mp3</option>
+          </select>
+      </div>
+    </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" >Song Title:</label>
+      <div class="col-sm-10">
+        <input type="text" name="song_title" ng-model="song.song_title" class="form-control">
+      </div>
+      </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" >Song File:</label>
+      <div class="col-sm-10">
+        <input type="file" name="song_file" data-bind-File ng-model="song.file" class="form-control" />
+
+      </div>
+      </div>
+
+  </form>
+       <div class="col-sm-offset-2 col-sm-10">
+        <button class="btn btn-danger" ng-click="submitsong()">Submit</button>
+      </div>
+</div>
+{% endverbatim %}
+{#Vijendra Modal ends here#}
+
+<div id="indexPage" style="opacity: 1;">
 <div style="height: 82%;overflow-y: scroll;">
+    <div class="container" style="background-color: #cc1111;width: 100%;position: fixed;z-index: 7">
+      <div class="row" style="display: inline-flex;">
+          <div class="" style=""><button class="btn btn-danger" id="songButton" ng-click="getalbums2()">Add Songs</button></div>
+          <div class=""><button class="btn btn-danger" ng-click="playsongs()">Play All Songs</button></div>
+          <div class=""><button class="btn btn-danger" ng-click="playall()">Play All Songs With Suffle</button></div>
+      </div>
+    </div>
+    <br>
       <h2 style="font-family: cursive;">All Songs List</h2>
-      <div class="row" style="width: 100%">
+      <div class="row" style="width: 100%;">
           {% for album in album %}
-              <div class="col-sm-6" style="height: 400px; background-color: white;">
+
+              <div class="col-sm-12" style="z-index:5;height: 400px;background-color: white;overflow-y: scroll; ">
               {% with forloop.counter as myVar %}
-                  <h2 style="font-family:cursive;left: 10%;">{{ album.album_title }}</h2>
-                  <img style="height: 50px;width: 100px;left: 10%;" src="../{{album.album_logo.url}}">
-              {% for song in album.song_set.all %}
-                 <h3 id="{{ song.id }}" style="font-family: 'Rubik', cursive;left: 10%;">{{ forloop.counter }}. {{ song.song_title }}-{{ song.file_type }}
-                  <span onclick="audioPlay({{ song.id }})"><i style="cursor: pointer;" class= "glyphicon glyphicon-play" onclick='giveUrl("{{ song.song_file.url }}")' ></i></span>
-                 </h3>
+                  <br>
+                  <div style="padding: 18px;font-size: 25px;letter-spacing: 6px;"><span style="font-family:cursive;left: 10%;background-color: #111;color: #fff;">{{ album.album_title }}</span></div>
+{#                  <br><div style="text-align: center;"><img style="height: 100px;width: 200px;left: 10%;" src="../{{album.album_logo.url}}"></div>#}
+              {% for song in album.album_songs %}
+                 <div style="padding: 6px;font-size: 25px;letter-spacing: 3px;" id="{{ song.id }}">
+                     <span style="font-family: 'Rubik', cursive;left: 10%;color: #111;">{{ forloop.counter }}. {{ song.song_title }}-{{ song.file_type }}</span>
+                     <span onclick="audioPlay({{ song.id }})"><i style="cursor: pointer;" class= "glyphicon glyphicon-play" onclick='giveUrl("{{ song.url }}")' ></i></span>
+                 </div>
 
               {% endfor %}
               {% endwith %}
               </div>
+              <br><br>
+              <div style="max-width: 100%; position: relative;opacity: 1;background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;background-image: url('../{{album.album_logo_url}}');min-height: 100%;"></div>
+
           {% endfor %}
       </div>
 </div>
@@ -30,3 +100,26 @@
     <audio style="height: 50px;width: 90%;border-radius: 2%;" id="audio" controls><source id="url" src="../../media/Hey_Mama.mp3" type="audio/mpeg"> </audio>
      </div>
 </div>
+</div>
+</div>
+</div>
+
+
+
+<script>
+ $(document).on("click", "#songButton", function() {
+      console.log("Pressed song button");
+      var modal  = document.getElementById('myModal');
+      var opacity  = document.getElementById('indexPage');
+      modal.style.display = "block";
+      opacity.style.opacity = "0.5";
+      var span = document.getElementById("close");
+      console.log(span);
+
+span.onclick = function() {
+  modal.style.display = "none";
+  opacity.style.opacity = "1";
+};
+
+    });
+</script>
