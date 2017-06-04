@@ -3,8 +3,8 @@
 <html ng-app="myApp">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}/">
-<script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
-<script src="//cdn.jsdelivr.net/alertifyjs/1.8.0/alertify.min.js"></script>
+{#<script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>#}
+{#<script src="//cdn.jsdelivr.net/alertifyjs/1.8.0/alertify.min.js"></script>#}
 <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -14,7 +14,7 @@
 {% verbatim %}
 <div id="whole" ng-controller = "faqCtrl">
 <div class="container" id="myModal" style="display: none;z-index: 10;background-color: white;  height: 300px;width: 40%;left: 30%;top:150px;position: fixed;">
- <span id="close" style="cursor: pointer;">&times;</span>
+ <span id="close" class="close icon" style="cursor: pointer;">&times;</span>
     <h2>Add Album Here</h2>
   <form class="form-horizontal" >
     <div class="form-group">
