@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<body>
+<div class="container" id="myModal" style="background-color: white;  height: 300px;width: 40%;left: 30%;top:150px;position: fixed;">
+ <span id="close" class="close icon" style="cursor: pointer;">&times;</span>
+    <h2>Add Album Here</h2>
+  <form class="form-horizontal"  method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="artist" >Artist:</label>
+      <div class="col-sm-10">
+        <input type="text" name="artist" ng-model="album.artist" class="form-control" >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="album_title"  >Album Title:</label>
+      <div class="col-sm-10">
+        <input type="text" name="album_title" ng-model="album.album_title" class="form-control" >
+      </div>
+    </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="genre">Genre:</label>
+      <div class="col-sm-10">
+        <input type="text" name="genre" ng-model="album.genre" class="form-control">
+      </div>
+      </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="album_logo" >Album Logo:</label>
+      <div class="col-sm-10">
+        <input type="file" name="album_logo" data-bind-File ng-model="album.logo" id="imagefile" class="form-control" />
+      </div>
+      </div>
+      <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-5">
+        <button type="submit" class="form-control btn btn-danger">Submit</button>
+      </div>
+      </div>
+  </form>
+    
+</div>
+</body>
