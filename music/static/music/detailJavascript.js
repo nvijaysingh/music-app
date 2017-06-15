@@ -7,8 +7,9 @@ function audioPlay(song_id) {
 }
 function giveUrl(song_url) {
     var url = document.getElementById('url');
+    console.log(song_url);
     var audio = document.getElementById('audio');
-   url.src="../../"+song_url;
+   url.src=song_url;
     audio.load();
     audio.play();
 
@@ -69,25 +70,29 @@ app.controller('faqCtrl', function($scope,customHttp,$timeout,$window,$location)
 
 
 
-    $scope.submit = function () {
-        console.log("here are you");
+    // $scope.submit = function () {
+    //     console.log("here are you");
+    //     var data = new FormData();
+    //     var image = $('#imagefile')[0].files[0];
+    //     console.log(image);
+    //     // var image = $scope.album.logo;
+    //     data.append('img',image);
+    //     console.log(data);
+    //     var params = $scope.album;
+    //     // console.log(params);
+    //     customHttp.request(data,'/music/addAlbum','POST', function (data) {
+    //                 if(data){
+    //                   if(data.status = 'success')
+    //                   {
+    //                     document.getElementById('myModal').style.display = 'none';
+    //                     document.getElementById('indexPage').style.opacity = '1';
+    //                     $scope.message_update = true;
+    //                     $timeout(function () { $scope.message_update =false;},2000);
+    //                     }
 
-        console.log($scope.album);
-        var params = $scope.album;
-        console.log(params);
-        customHttp.request(params,'/music/addAlbum','POST', function (data) {
-                    if(data){
-                      if(data.status = 'success')
-                      {
-                        document.getElementById('myModal').style.display = 'none';
-                        document.getElementById('indexPage').style.opacity = '1';
-                        $scope.message_update = true;
-                        $timeout(function () { $scope.message_update =false;},2000);
-                        }
-
-                    }
-                  });
-    };
+    //                 }
+    //               });
+    // };
 
 
 
@@ -110,7 +115,7 @@ app.controller('faqCtrl', function($scope,customHttp,$timeout,$window,$location)
                   });
     };
 
-
+    var time = 0;
 
     $scope.playall =function () {
 
@@ -133,14 +138,15 @@ app.controller('faqCtrl', function($scope,customHttp,$timeout,$window,$location)
                  document.getElementById('songDetail').innerHTML = "<h3>Now Playing "+$scope.song.pk+". "+$scope.song.name+"</h3>";
                var url = document.getElementById('url');
                var audio = document.getElementById('audio');
-                url.src="../../"+$scope.song.song;
+                url.src=$scope.song.song;
+                console.log(url);
                 audio.load();
                audio.play();
-
+               time = audio.duration;
             }
         });
         var audio = document.getElementById('audio');
-         var time = audio.duration;
+        
                console.log(time);
          setInterval(function(){
                 $scope.pk = items[Math.floor(Math.random() *items.length)];

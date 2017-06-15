@@ -1,5 +1,8 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.db.models.signals import pre_delete
+from django.dispatch.dispatcher import receiver
+
 class Album(models.Model):
     artist = models.CharField(max_length=250)
     album_title = models.CharField(max_length=500)
@@ -22,4 +25,14 @@ class Song(models.Model):
 
     def __str__(self):
         return self.song_title
+
+@receiver(pre_delete, sender=Album)
+def mymodel_delete(sender, instance, **kwargs):
+    # Pass false so FileField doesn't save the model.
+    instance.album_logo.delete(False)
+
+@receiver(pre_delete, sender=Song)
+def mymodel_delete(sender, instance, **kwargs):
+    # Pass false so FileField doesn't save the model.
+    instance.song_file.delete(False)
 

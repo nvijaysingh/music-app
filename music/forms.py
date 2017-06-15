@@ -8,11 +8,11 @@ class AlbumForm(forms.ModelForm):
 
     class Meta:
         model = Album
-        fields = ['artist', 'album_title', 'genre', 'album_logo']
+        fields = ('artist', 'album_title', 'genre', 'album_logo',)
 
 
 class SongForm(forms.ModelForm):
 
     class Meta:
         model = Song
-        fields = ['album','file_type','song_title', 'song_file']
+        fields = ('file_type','song_title', 'song_file',)
