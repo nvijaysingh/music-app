@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load staticfiles %}
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+<title>Add Video</title>
+<link rel="stylesheet" href="{% static 'video/bootstrap.min.css' %}">
 </head>
 <body>
-$END$
+<div class="container" id="myModal" style="background-color: #D3D0CF;height: 300px;width: 40%;left: 30%;top:150px;position: fixed;">
+    <h2>Add Video Here</h2>
+   <form class="form-horizontal"  method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="video_title" >Video Title:</label>
+      <div class="col-sm-10">
+        <input type="text" name="video_title" ng-model="song.song_title" class="form-control">
+      </div>
+      </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="video_file" >Video File:</label>
+      <div class="col-sm-10">
+        <input type="file" name="video_file" class="form-control" />
+
+      </div>
+      </div>
+      <div class="col-sm-offset-2 col-sm-5">
+        <button type="submit" class="form-control btn btn-danger">Submit</button>
+      </div>
+  </form>
+
+</div>
 </body>
-</html>

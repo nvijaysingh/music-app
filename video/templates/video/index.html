@@ -1,16 +1,30 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Videos</title>
+    <link rel="stylesheet" href="{% static 'video/bootstrap.min.css' %}">
 </head>
 <body>
-          <h1>You are here</h1>
+<a style="text-decoration: none;" href = "/video/addVideo"><button class="btn btn-primary" >Add Video</button></a>
+
+          <h1>All videos</h1>
 {#          <embed id="divxplayer" type="video/mp4" width="1024" height="768"#}
 {#src ="../../media/The Bourne Identity 2002 (1080p x265 10bit Tigole).mkv" autoPlay=\"true\"></embed>#}
-<video width="320" height="240" controls>
-  <source src="../../media/The Bourne Identity 2002 (1080p x265 10bit Tigole).mkv" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+       <div class="row">
+       {% for video in videos %}
+           <div class="col-sm-4">
+{#           <video width="320" height="240" controls>#}
+{#           <source src="{{ video.url }}" type="video/mp4">#}
+{#          Your browser does not support the video tag.#}
+{#           </video>#}
+           <br>
+           <a style="text-decoration: none;" href="{% url 'video:detail' video.key %}">{{ video.video }}</a>
+               <br>
+           <a style="text-decoration: none;" href="{{ video.url }}">Link</a>
+           </div>
+       {% endfor %}
+        </div>
 </body>
 </html>

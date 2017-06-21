@@ -1,7 +1,7 @@
 console.log("asdfghjkqwertyuiop");
 function audioPlay(song_id) {
          var song = document.getElementById(song_id);
-         document.getElementById('songDetail').innerHTML = "<h3>Now Playing "+song.innerHTML+"</h3>";
+         document.getElementById('songDetail').innerHTML = "<p>Now Playing "+song.innerHTML+"</p>";
 
 
 }
@@ -10,6 +10,15 @@ function giveUrl(song_url) {
     console.log(song_url);
     var audio = document.getElementById('audio');
    url.src=song_url;
+    audio.load();
+    audio.play();
+
+}
+function giveUrl2(song_url) {
+    var url = document.getElementById('url');
+    console.log(song_url);
+    var audio = document.getElementById('audio');
+   url.src="../../"+song_url;
     audio.load();
     audio.play();
 
@@ -139,7 +148,7 @@ app.controller('faqCtrl', function($scope,customHttp,$timeout,$window,$location)
                var url = document.getElementById('url');
                var audio = document.getElementById('audio');
                 url.src=$scope.song.song;
-                console.log(url);
+                console.log(u)
                 audio.load();
                audio.play();
                time = audio.duration;

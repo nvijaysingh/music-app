@@ -1,10 +1,22 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+   <link rel="stylesheet" href="{% static 'video/bootstrap.min.css' %}">
 </head>
 <body>
-$END$
+     <div class="row">
+     {% for video in videos %}
+      <div class="col-sm-4">
+     <h3>{{ video.video }}</h3>
+     <video width="1280" height="600" controls>
+       <source src="{{ video.url }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+         </div>
+{% endfor %}
+     </div>
 </body>
 </html>
