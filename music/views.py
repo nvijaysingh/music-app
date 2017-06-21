@@ -33,8 +33,7 @@ def detail(request,album_id):
   return render(request, "music/detail.html",{'album':album,'songs':songs_list})
 
 def mainPage(request):
-
-    return HttpResponseRedirect('/music/')
+    return render(request, "music/mainPage.html",)
 
 def addAlbum(request):
   form = AlbumForm(request.POST or None, request.FILES or None)
