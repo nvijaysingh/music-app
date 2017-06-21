@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html ng-app="myApp">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'music/bootstrap.min.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}/">
 {#<script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>#}
 {#<script src="//cdn.jsdelivr.net/alertifyjs/1.8.0/alertify.min.js"></script>#}
@@ -13,43 +13,7 @@
 {# Vijendra Modal section#}
 {% verbatim %}
 <div id="whole" ng-controller = "faqCtrl">
-<!-- <div class="container" id="myModal" style="display: none;z-index: 10;background-color: white;  height: 300px;width: 40%;left: 30%;top:150px;position: fixed;">
- <span id="close" class="close icon" style="cursor: pointer;">&times;</span>
-    <h2>Add Album Here</h2>
-  <form class="form-horizontal" >
-    <div class="form-group">
-      <label class="control-label col-sm-2" >Artist:</label>
-      <div class="col-sm-10">
-        <input type="text" ng-model="album.artist" class="form-control" >
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2"  >Album Title:</label>
-      <div class="col-sm-10">
-        <input type="text" ng-model="album.album_title" class="form-control" >
-      </div>
-    </div>
-      <div class="form-group">
-      <label class="control-label col-sm-2" >Genre:</label>
-      <div class="col-sm-10">
-        <input type="text" ng-model="album.genre" class="form-control">
-      </div>
-      </div>
-      <div class="form-group">
-      <label class="control-label col-sm-2" >Album Logo:</label>
-      <div class="col-sm-10">
-        <input type="file" data-bind-File ng-model="album.logo" id="imagefile" class="form-control" />
-
-      </div>
-      </div>
-  </form>
-    <div class="col-sm-offset-2 col-sm-10">
-        <button class="btn btn-danger" ng-click="submit()">Submit</button>
-      </div>
-</div> -->
 {% endverbatim %}
-{#Vijendra Modal ends here#}
-<p style="text-align: center; color: green;font-style: italic;font-size: large;" ng-if="message_update">Album Added Successfully</p>
 <div id="indexPage"style="opacity: 1;">
 <div class="row">
     <div class="col-sm-4"><h3 style="color: black;">Here are all my albums:</h3></div>
@@ -60,15 +24,12 @@
 {% if all_albums %}
            <div class="row">
         {% for album in all_albums %}
-
-              <div class="col-sm-4">
-                  <img style="height: 240px;width: 320px;" src="../../{{ album.album_logo.url }}"/><br>
-                  <h3>{{ album.album_title }}</h3>
-                  <a style="text-decoration: none;color:white" href="{% url 'music:detail' album.id %}"><button class="btn btn-success">Open Album</button></a>
+              <div class="col-sm-3">
+                  <img style="height: 200px;width: 80%;border-radius: 5px;z-index: 3;border: outset;" src="../../{{ album.album_logo.url }}"/><br>
+                  <a style="text-decoration: none;color:white" href="{% url 'music:detail' album.id %}"><button class="btn btn-success">{{ album.album_title }}</button></a>
               </div>
-
-
         {% endfor %}
+
             </div>
 {% else %}
     <h3>No Albums in Database</h3>

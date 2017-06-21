@@ -1,7 +1,6 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'music/bootstrap.min.css' %}">
 <body>
-<div class="container" id="myModal" style="background-color: white;  height: 300px;width: 40%;left: 30%;top:150px;position: fixed;">
- <span id="close" class="close icon" style="cursor: pointer;">&times;</span>
+<div class="container" id="myModal" style="background-color: #D3D0CF;  height: 300px;width: 40%;left: 30%;top:150px;position: fixed;">
     <h2>Add Album Here</h2>
   <form class="form-horizontal"  method="post" enctype="multipart/form-data" >
     {% csrf_token %}

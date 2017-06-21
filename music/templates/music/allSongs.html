@@ -1,6 +1,7 @@
 {% load staticfiles %}
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'music/bootstrap.min.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}/">
 {#    <script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>#}
 {#    <script src="//cdn.jsdelivr.net/alertifyjs/1.8.0/alertify.min.js"></script>#}
@@ -12,7 +13,7 @@
 <div class="whole" ng-app="myApp">
 <div class="whole"  ng-controller="faqCtrl">
 <div id="indexPage" style="opacity: 1;">
-<div style="height: 82%;overflow-y: scroll;">
+<div style="height: 86%;overflow-y: scroll;">
     <div class="container" style="background-color: #cc1111;width: 100%;position: fixed;z-index: 7">
       <div class="row" style="display: inline-flex;">
           <div class=""><button class="btn btn-danger" ng-click="playsongs()">Play All Songs</button></div>
@@ -32,7 +33,7 @@
               {% for song in album.album_songs %}
                  <div style="padding: 6px;font-size: 15px;letter-spacing: 3px;" id="{{ song.id }}">
                      <span style="font-family: 'Rubik', cursive;left: 10%;color: #111;">{{ forloop.counter }}. {{ song.song_title }}-{{ song.file_type }}</span>
-                     <span onclick="audioPlay({{ song.id }})"><i style="cursor: pointer;" class= "glyphicon glyphicon-play" onclick='giveUrl("{{ song.url }}")' ></i></span>
+                     <span onclick="audioPlay({{ song.id }})"><i style="cursor: pointer;" class= "glyphicon glyphicon-play-circle" onclick='giveUrl("{{ song.url }}")' ></i></span>
                  </div>
 
               {% endfor %}
@@ -46,7 +47,7 @@
 </div>
 <div class="songContainer" style="height: 15%;width: 100%;background-color: coral;">
     <div id="songDetail">
-        <h3>Please click on a song to play</h3>
+        <p style="font-size: 15px;">Please click on a song to play</p>
     </div>
      <div style="text-align: center;">
     <audio style="height: 50px;width: 90%;border-radius: 2%;" id="audio" controls><source id="url" src="../../media/Hey_Mama.mp3" type="audio/mpeg"> </audio>
