@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 {% block body %}
-<div class="whole" ng-app="myApp">
+<div class="whole" ng-app="myApp" style="position: relative;top: 78px;">
 <div class="whole"  ng-controller="faqCtrl">
 <div id="indexPage" style="opacity: 1;">
 <div style="height: 86%;overflow-y: scroll;">
     <div class="container" style="width: 100%;position: fixed;z-index: 7;top: 60px;">
       <div class="row" style="display: inline-flex;">
-          <div class=""><button class="btn btn-danger" ng-click="playsongs()">Play All Songs</button></div>
-          <div class=""><button class="btn btn-danger" ng-click="playall()">Play All Songs With Suffle</button></div>
+          <div class=""><button class="btn btn-primary" style="background-color: black;" ng-click="playsongs()">Play All Songs</button></div>
+          <div class=""><button class="btn btn-primary" style="background-color: black;" ng-click="playall()">Play All Songs With Suffle</button></div>
       </div>
     </div>
     <br>

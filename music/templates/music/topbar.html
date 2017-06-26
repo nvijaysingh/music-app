@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>
+   <link rel="stylesheet" href="{% static 'music/bootstrap.min.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -25,14 +26,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="">My App</a>
+            <a class="navbar-brand" href="/">My App</a>
         </div>
 
         <!-- Items -->s
         <div class="collapse navbar-collapse" id="topNavBar">
             <ul class="nav navbar-nav">
+                <li><a href="/video"><span class="glyphicon glyphicon-hd-video" aria-hidden="true"></span>Videos</a></li>
                 <li><a href="/music"><span class="glyphicon glyphicon-cd" aria-hidden="true"></span>Albums</a></li>
                 <li><a href="/music/allsongs"><span class="glyphicon glyphicon-music" aria-hidden="true"></span>All Songs</a></li>
+                <li><a href="/video/addVideo"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Video</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>

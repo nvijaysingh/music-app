@@ -1,13 +1,14 @@
+{% extends 'music/topbar.html' %}
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Music App</title>
-    <link rel="stylesheet" href="{% static 'music/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">
 </head>
-<body class="mainPageBody">
+{% block body %}
+<div style="position: relative;top: 78px;" class="mainPageBody">
         <br><br>
         <div class="row">
             <div class="col-sm-4"></div>
@@ -16,5 +17,6 @@
                 <a href="/video/" ><button class="btn btn-success">Video</button></a>
             </div>
         </div>
-</body>
+</div>
+{% endblock %}
 </html>

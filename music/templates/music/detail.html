@@ -12,9 +12,9 @@
 <script type="text/javascript" src="{% static 'music/detailJavascript.js' %}"></script>
 </head>
 {% block body %}
-<div id="indexPage">
+<div id="indexPage" style="position: relative;top: 78px;">
 {#    <div class="" style=""><a style="text-decoration: none;" href="{% url 'music:addSong' album.id %}"><button class="btn btn-danger">Add Song</button></a></div>#}
-     <div class="" style=""><a style="text-decoration: none;"><button class="btn btn-danger" onclick="songButton('{{ album.id }}')" id="songButton">Add Song</button></a></div>
+     <div class="" style=""><a style="text-decoration: none;"><button class="btn btn-primary" onclick="songButton('{{ album.id }}')" id="songButton">Add Song</button></a></div>
     <div class="row" style="height: 550px; width: 100%;background-color: white;">
 <div class="col-sm-4" style="text-align: center;height: 100%;width: 40%;font-family: Serif;"><br>
 <img style="height: 240px;width: 320px;border-radius: 5px;z-index: 3;border: outset;" src="../../{{ album.album_logo.url }}">
