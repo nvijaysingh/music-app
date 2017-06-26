@@ -1,13 +1,21 @@
+{% extends 'music/topbar.html' %}
 {% load staticfiles %}
-{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
 <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'music/bootstrap.min.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}/">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script type="text/javascript" src="{% static 'music/detailJavascript.js' %}"></script>
-<div class="" style=""><a style="text-decoration: none;" href="{% url 'music:addSong' album.id %}"><button class="btn btn-danger">Add Song</button></a></div>
-<div class="row" style="height: 80%;width: 100%;background-color: white;">
+</head>
+{% block body %}
+<div id="indexPage">
+{#    <div class="" style=""><a style="text-decoration: none;" href="{% url 'music:addSong' album.id %}"><button class="btn btn-danger">Add Song</button></a></div>#}
+     <div class="" style=""><a style="text-decoration: none;"><button class="btn btn-danger" onclick="songButton('{{ album.id }}')" id="songButton">Add Song</button></a></div>
+    <div class="row" style="height: 550px; width: 100%;background-color: white;">
 <div class="col-sm-4" style="text-align: center;height: 100%;width: 40%;font-family: Serif;"><br>
 <img style="height: 240px;width: 320px;border-radius: 5px;z-index: 3;border: outset;" src="../../{{ album.album_logo.url }}">
 <h3>Album Title: {{ album.album_title }}</h3>
@@ -23,7 +31,7 @@
 {% endfor %}
 </div>
 </div>
-<div class="songContainer" style="height: 15%;width: 100%;background-color: coral;">
+<div class="songContainer" style="position: fixed;bottom: 0px;width: 100%;background-color: coral;">
     <div id="songDetail">
         <p style="font-size: 15px;">Please click on a song to play</p>
     </div>
@@ -31,4 +39,58 @@
     <audio style="height: 50px;width: 90%;border-radius: 2%;" id="audio" controls><source id="url" src="../../media/Hey_Mama.mp3" type="audio/mpeg"> </audio>
     </div>
 </div>
+</div>
+
+<div class="container" id="myModal" style="display: none;z-index: 5; background-color: #D3D0CF;height: 300px;width: 40%;left: 30%;top:150px;position: fixed;">
+    <span class="close" id="close">&times</span>
+    <h2>Add Song Here</h2>
+   <form class="form-horizontal" action=""  method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="file_type" >File Type:</label>
+      <div class="col-sm-10">
+         <input type="text" name="file_type" ng-model="song.song_title" class="form-control">
+      </div>
+    </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="song_title" >Song Title:</label>
+      <div class="col-sm-10">
+        <input type="text" name="song_title" ng-model="song.song_title" class="form-control">
+      </div>
+      </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="song_file" >Song File:</label>
+      <div class="col-sm-10">
+        <input type="file" name="song_file" data-bind-File ng-model="song.file" class="form-control" />
+
+      </div>
+      </div>
+      <div class="col-sm-offset-2 col-sm-5">
+        <button type="submit" class="form-control btn btn-danger">Submit</button>
+      </div>
+  </form>
+
+</div>
+ <script type="text/javascript">
+
+         function songButton(id) {
+             console.log("Pressed album button");
+             var modal = document.getElementById('myModal');
+             var opacity = document.getElementById('indexPage');
+             modal.style.display = "block";
+             opacity.style.opacity = "0.5";
+             var span = document.getElementById("close");
+             console.log(span);
+
+             span.onclick = function () {
+                 modal.style.display = "none";
+                 opacity.style.opacity = "1";
+             };
+
+         };
+</script>
+
 {% endblock %}
+
+
+</html>

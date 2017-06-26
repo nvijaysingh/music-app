@@ -148,7 +148,6 @@ app.controller('faqCtrl', function($scope,customHttp,$timeout,$window,$location)
                var url = document.getElementById('url');
                var audio = document.getElementById('audio');
                 url.src=$scope.song.song;
-                console.log(u)
                 audio.load();
                audio.play();
                time = audio.duration;

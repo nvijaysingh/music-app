@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^addAlbum/$', views.addAlbum, name='addAlbum'),
     url(r'^(?P<album_id>[0-9]+)/addSong/$', views.addSong, name='addSong'),
     url(r'^get_ids', views.get_ids, name='get_ids'),
+    url(r'^download_records', views.download_records, name='download_records'),
 ]

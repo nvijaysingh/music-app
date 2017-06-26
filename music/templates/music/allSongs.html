@@ -1,20 +1,18 @@
+{% extends 'music/topbar.html' %}
 {% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
     <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'music/bootstrap.min.css' %}">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}/">
-{#    <script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>#}
-{#    <script src="//cdn.jsdelivr.net/alertifyjs/1.8.0/alertify.min.js"></script>#}
-    <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="{% static 'music/bower_components/semantic/dist/semantic.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'music/detailJavascript.js' %}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+{% block body %}
 <div class="whole" ng-app="myApp">
 <div class="whole"  ng-controller="faqCtrl">
 <div id="indexPage" style="opacity: 1;">
 <div style="height: 86%;overflow-y: scroll;">
-    <div class="container" style="background-color: #cc1111;width: 100%;position: fixed;z-index: 7">
+    <div class="container" style="width: 100%;position: fixed;z-index: 7;top: 60px;">
       <div class="row" style="display: inline-flex;">
           <div class=""><button class="btn btn-danger" ng-click="playsongs()">Play All Songs</button></div>
           <div class=""><button class="btn btn-danger" ng-click="playall()">Play All Songs With Suffle</button></div>
@@ -45,7 +43,7 @@
           {% endfor %}
       </div>
 </div>
-<div class="songContainer" style="height: 15%;width: 100%;background-color: coral;">
+<div class="songContainer" style="position: fixed;z-index:5;bottom: 0px;width: 100%;background-color: coral;">
     <div id="songDetail">
         <p style="font-size: 15px;">Please click on a song to play</p>
     </div>
@@ -56,23 +54,5 @@
 </div>
 </div>
 </div>
-
-
-
-<script>
- $(document).on("click", "#songButton", function() {
-      console.log("Pressed song button");
-      var modal  = document.getElementById('myModal');
-      var opacity  = document.getElementById('indexPage');
-      modal.style.display = "block";
-      opacity.style.opacity = "0.5";
-      var span = document.getElementById("close");
-      console.log(span);
-
-span.onclick = function() {
-  modal.style.display = "none";
-  opacity.style.opacity = "1";
-};
-
-    });
-</script>
+{% endblock %}
+</html>
